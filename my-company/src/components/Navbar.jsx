@@ -6,7 +6,7 @@ function Navbar() {
     gap: "1rem",
     padding: "1rem",
     justifyContent: "center",
-    color: "#fff"
+    color: "#fff",
     marginBottom: "2rem",
     backgroundColor: "#0e0e0e"
   };
