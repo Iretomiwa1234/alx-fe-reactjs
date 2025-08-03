@@ -1,6 +1,6 @@
-
 import React, { useState } from "react";
 import { searchUsers } from "../services/githubService";
+import axios from "axios";
 
 const Search = () => {
   const [username, setUsername] = useState("");
@@ -10,6 +10,17 @@ const Search = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
+  // 👇 Fetch additional data for a user
+  const fetchUserData = async (username) => {
+    try {
+      const response = await axios.get(`https://api.github.com/users/${username}`);
+      return response.data;
+    } catch (err) {
+      console.error("Error fetching user data:", err);
+      return null;
+    }
+  };
+
   const handleSearch = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -18,7 +29,16 @@ const Search = () => {
 
     try {
       const data = await searchUsers({ username, location, minRepos });
-      setResults(data.items);
+
+      // Fetch detailed user data for each result (optional)
+      const detailedUsers = await Promise.all(
+        data.items.map(async (user) => {
+          const details = await fetchUserData(user.login);
+          return { ...user, ...details };
+        })
+      );
+
+      setResults(detailedUsers);
     } catch (err) {
       console.error(err);
       setError(true);
@@ -92,6 +112,10 @@ const Search = () => {
             />
             <div className="ml-4">
               <p className="text-lg font-medium text-gray-800">{user.login}</p>
+              <p className="text-sm text-gray-600">{user.location}</p>
+              <p className="text-sm text-gray-600">
+                Public Repos: {user.public_repos}
+              </p>
               <a
                 href={user.html_url}
                 target="_blank"
