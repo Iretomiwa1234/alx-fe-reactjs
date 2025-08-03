@@ -1,31 +1,14 @@
-const baseURL = import.meta.env.VITE_APP_GITHUB_API_URL;
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+// src/App.jsx
+import React from "react";
+import Search from "./components/Search";
 
-const useFetchUser = (username) => {
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+function App() {
+  return (
+    <div>
+      <h1 style={{ textAlign: "center" }}>GitHub User Search</h1>
+      <Search />
+    </div>
+  );
+}
 
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        setLoading(true);
-        const response = await axios.get(`${baseURL}/users/${username}`);
-        setUser(response.data);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    if (username) {
-      fetchUser();
-    }
-  }, [username]);
-
-  return { user, loading, error };
-};
-
-export default useFetchUser;
+export default App;
