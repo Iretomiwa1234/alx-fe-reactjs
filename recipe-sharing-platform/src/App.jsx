@@ -1,6 +1,10 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import HomePage from './components/HomePage';
-import RecipeDetail from './components/RecipeDetail';
+// src/App.jsx
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+
+// Import your pages/components
+import HomePage from "./components/HomePage";
+import RecipeDetail from "./components/RecipeDetail";
 
 function App() {
   return (
@@ -13,4 +17,4 @@ function App() {
   );
 }
 
-export default App
+export default App;
