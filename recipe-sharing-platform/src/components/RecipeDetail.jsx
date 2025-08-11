@@ -40,9 +40,9 @@ const RecipeDetail = () => {
         {/* Recipe Info */}
         <div className="p-6">
           <h1 className="text-3xl font-bold text-secondary mb-4">
-            {recipe.name}
+            {recipe.title}
           </h1>
-          <p className="text-gray-600 mb-6">{recipe.description}</p>
+          <p className="text-gray-600 mb-6">{recipe.summary}</p>
 
           {/* Ingredients */}
           <section className="mb-8">

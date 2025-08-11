@@ -1,8 +1,8 @@
 [
   {
     "id": 1,
-    "name": "Banana & Blueberry French Toast",
-    "description": "A sweet and fruity twist on a breakfast classic.",
+    "title": "Banana & Blueberry French Toast",
+    "summary": "A sweet and fruity twist on a breakfast classic.",
     "image": "/images/french-toast.jpg",
     "ingredients": [
       "2 slices of bread",
