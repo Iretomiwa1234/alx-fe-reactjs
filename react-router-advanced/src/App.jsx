@@ -5,6 +5,7 @@ import Post from "./pages/Post";
 import Profile from "./components/Profile";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { BrowserRouter } from "react-router-dom";
+import BlogPost from "./pages/BlogPost"; 
 
 export default function App() {
   return (
@@ -21,7 +22,7 @@ export default function App() {
 
         {/* Blog with dynamic post routes */}
         <Route path="/blog" element={<Blog />} />
-        <Route path="/blog/:id" element={<Post />} />
+        <Route path="/blog/:id" element={<BlogPost />} /> {/* ✅ fixed */}
 
         {/* Protected Profile with nested routes */}
         <Route
