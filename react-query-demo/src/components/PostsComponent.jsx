@@ -15,7 +15,17 @@ export default function PostsComponent() {
     isFetching,
     refetch,
     isError,
-  } = useQuery(["posts"], fetchPosts);
+  } = useQuery(
+    ["posts"], 
+    fetchPosts,
+    {
+      // ✅ Options
+      cacheTime: 1000 * 60 * 5,          // 5 minutes
+      staleTime: 1000 * 60 * 1,          // 1 minute
+      refetchOnWindowFocus: false,       // disable refetch when window refocuses
+      keepPreviousData: true,            // keep old data while fetching new
+    }
+  );
 
   if (isLoading) return <p>Loading posts...</p>;
   if (isError) return <p style={{ color: "red" }}>Error: {error.message}</p>;
@@ -23,9 +33,7 @@ export default function PostsComponent() {
   return (
     <div>
       <div style={{ display: "flex", gap: 8, alignItems: "center", marginBottom: 12 }}>
-        <button onClick={() => refetch()}>
-          Refetch Posts
-        </button>
+        <button onClick={() => refetch()}>Refetch Posts</button>
         {isFetching && <span>Refreshing…</span>}
       </div>
 
