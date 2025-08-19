@@ -4,9 +4,11 @@ import Blog from "./pages/Blog";
 import Post from "./pages/Post";
 import Profile from "./pages/Profile";
 import ProtectedRoute from "./components/ProtectedRoute";
+import { BrowserRouter } from "react-router-dom";
 
 export default function App() {
   return (
+    <BrowserRouter>
     <div>
       <nav style={{ display: "flex", gap: "1rem", marginBottom: "1rem" }}>
         <Link to="/">Home</Link>
@@ -32,5 +34,6 @@ export default function App() {
         />
       </Routes>
     </div>
+    </BrowserRouter>
   );
 }
