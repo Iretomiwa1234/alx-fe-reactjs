@@ -1,24 +1,27 @@
 import React, { useState } from "react";
 
-export default function AddTodoForm({ addTodo }) {
-  const [text, setText] = useState("");
+const AddTodoForm = ({ addTodo }) => {
+  const [value, setValue] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!text.trim()) return;
-    addTodo(text);
-    setText("");
+    if (!value.trim()) return;
+    addTodo(value);
+    setValue("");
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} data-testid="form">
       <input
         type="text"
-        placeholder="Add new todo"
-        value={text}
-        onChange={(e) => setText(e.target.value)}
+        placeholder="Add a new todo"
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+        data-testid="input"
       />
-      <button type="submit">Add</button>
+      <button type="submit" data-testid="add-btn">Add</button>
     </form>
   );
-}
+};
+
+export default AddTodoForm;
