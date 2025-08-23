@@ -5,21 +5,24 @@ const AddTodoForm = ({ addTodo }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!value.trim()) return;
-    addTodo(value);
+    const trimmed = value.trim();
+    if (!trimmed) return;
+    addTodo(trimmed);
     setValue("");
   };
 
   return (
-    <form onSubmit={handleSubmit} data-testid="form">
+    <form onSubmit={handleSubmit} aria-label="add-todo-form">
       <input
         type="text"
         placeholder="Add a new todo"
+        aria-label="todo-input"
         value={value}
         onChange={(e) => setValue(e.target.value)}
-        data-testid="input"
       />
-      <button type="submit" data-testid="add-btn">Add</button>
+      <button type="submit" aria-label="add-todo-button">
+        Add
+      </button>
     </form>
   );
 };
